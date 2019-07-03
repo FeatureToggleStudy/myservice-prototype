@@ -12,6 +12,7 @@ let express = require('express'),
   // Axios = require('axios'),
   Proms = require('bluebird'),
   http = require('http'),
+  https = require('https'),
   // featuretoggleapi = require('feature-toggle-api'),
 
   // not so secret secret
@@ -164,21 +165,27 @@ app.get('/link-checker', (req, res) => {
 
     const listLinks = fixedFiles.map(file => {
       links = fs.readFileSync("./views/" + file, "utf8");
-      links = links.match(/href=\"(.*)\"/g);
-      links = [...new Set(links)];
+      linksD = links.match(/href=\"(.*?)\"/g);
+      linksS = links.match(/href=\'(.*?)\'/g);;
+      if (linksD === null) {
+        links = linksD;
+      } else if (linksS === null) {
+        links = linksS;
+      } else {
+        links = linksS.concat(linksD);
+      }
+      unq = (array) => [...new Set(array)];
+      links = unq(links);
       const fixedLinks = links.map(link => {
         link = link.replace(/'/g, "");
         link = link.replace(/"/g, "");
-        link = link.replace("href", "");
-        link = link.replace(/=/g, "");
+        link = link.replace("href=", "");
         link = link.replace(/ target_blacnk/g, "");
         link = link.replace(/ target_blank/g, "");
         link = link.replace(/ relexternal/g, "");
-        if (!link.includes("#") || !link.includes("tel") ) {
+        if (link.charAt(0) !== "#" && !link.includes("tel")) {
           return link
         }
-        // if (!link.includes("class") || !link.charAt(0) === "#" || !link.includes("${") || !link.includes("#") || !link.includes("tel") || !link.includes("mailto") || !link.includes("javascript") || !link.includes("<") || !link.includes("uikit-btn")) {
-        // }
       });
 
       return {
@@ -187,22 +194,38 @@ app.get('/link-checker', (req, res) => {
       }
     });
 
-    res.send(listLinks);
-
     const allLinks = listLinks.map(linkArray => {
 
       const localLinks = linkArray.links.map(link => {
-        // http.get("http://localhost:5000/"+link, (resp)  => {
-        //   resp.setEncoding('utf8');
-        //   resp.on('data', (body) => {
-        //     console.log('data recieved?');
-        //     return {
-        //       link,
-        //       status: body.statusCode
-        //     }
-        //   });
-        //   resp.on('error', (err) => {console.log(err)});
-        // })
+        if (typeof link !== "undefined" && link !== null && link.charAt(0) === "/") {
+          link = "http://localhost:5000" + link;
+        }
+        if (typeof link !== "undefined" && link !== null && link !== "mygov-linked") {
+          console.log(link);
+          if (link.includes("https")) {
+            https.get(encodeURI(link), (resp)  => {
+              resp.setEncoding('utf8');
+              resp.on('data', (body) => {
+                return {
+                  link,
+                  status: body.statusCode
+                }
+              });
+              resp.on('error', (err) => {console.log(err)});
+            });
+          } else {
+            http.get(encodeURI(link), (resp)  => {
+              resp.setEncoding('utf8');
+              resp.on('data', (body) => {
+                return {
+                  link,
+                  status: body.statusCode
+                }
+              });
+              resp.on('error', (err) => {console.log(err)});
+            });
+          } 
+        }
       });
 
       return {
@@ -212,7 +235,7 @@ app.get('/link-checker', (req, res) => {
     });
 
 
-    // res.send(allLinks);
+    res.send(allLinks);
 
   });
 });
