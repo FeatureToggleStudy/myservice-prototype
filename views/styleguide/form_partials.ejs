@@ -869,7 +869,7 @@ options: [
             <div style="margin-left: 1em;" class="margin-above accordion">
               <button class="style-less-button accordion-button"><i class="transition fas fa-chevron-right"></i> Modifiers</button>
               <div class="accordion-content" hidden>
-                ${mapMods([modGlobal[0], modGlobal[2], modGlobal[3]])}
+                ${mapMods([modGlobal[0], modGlobal[2], modGlobal[3], {text: "noMargins", desc: "Removes margins above and below set of checkboxes"}, {text: "noUpperMargins", desc: "Removes margins above set of checkboxes"}, {text: "noLowerMargins", desc: "Removes margins below set of checkboxes"}])}
                 
               </div>
             </div>
@@ -1006,7 +1006,7 @@ icon: {
                 <div style="margin-left: 1em;" class="accordion">
                   <button class="style-less-button accordion-button"><i class="transition fas fa-chevron-right"></i> Modifiers</button>
                     <div class="accordion-content" hidden>
-                      ${mapMods([modGlobal[0], modGlobal[3]])}
+                      ${mapMods([modGlobal[0], modGlobal[3], {text: "noCountry", desc: "Hides country field from address form"}])}
                     </div>
                 </div>` : ""}
                 ${$(this).data("field") === "date" ? `

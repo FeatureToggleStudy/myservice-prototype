@@ -37,15 +37,15 @@
             %>
             <%- include(partials+"components/form-elements/radio--yes-no", locals) %>
 
-            <div id="lump-sum-previous-yes-div" style="display: none;">
+            <div id="lump-sum-previous-yes-div" hidden>
               <h2>Declaration</h2>
               <div class="declaration">
-                <div class="uiToolKitCheckBox">
-                  <label class="uikit-control-input">
-                    <input class="uikit-control-input__input" type="checkbox" id="declaration_checked" name="declaration_checked">
-                    <span class="uikit-control-input__text">I confirm the declarations made on my application for Subsidy Certificate form are correct in that:</span>
-                  </label>
-                </div>
+                <%- include(partials+"components/form-partials/checkbox", {
+                  modifiers: ["noMargins"],
+                  boxes: [
+                    "I confirm the declarations made on my application for Subsidy Certificate form are correct in that:"
+                  ]
+                }) %>
                 <ol class="declaration__list">
                   <li>I expect that I will continue to provide service in the Australian Defence Force (ADF), where the service is considered effective
                     for DHOAS purposes, for a period of at least 12 months after the payment of subsidy is authorised. I acknowledge that the Scheme Administrator or the Department
@@ -62,7 +62,7 @@
               </div>
             </div>
 
-            <div id="dhoas_lump_sum" style="display: none;"><%- include(partials+"content/dhoas_lump_sum") %></div>
+            <div id="dhoas_lump_sum" hidden><%- include(partials+"content/dhoas_lump_sum") %></div>
 
             <div class="pagination margin-above--extra">
               <button class="uikit-btn uikit-btn--tertiary " onclick="window.location.href='/auth/claim/dhoas/sar3' ">Previous</button>

@@ -38,93 +38,83 @@
           %>
             <%- include(partials+"components/form-elements/notice", locals) %>
 
-            <% 
-            locals.el = {};
-            locals.el.question = 'I declare that:'; 
-            locals.el.items = ['I (or I and my dependent/s) will be occupying the property','I (or I and my dependent/s) currently occupy the property','My dependent/s will be occupying the property','My dependent/s currently occupy the property','I will not be occupying the property until the completion of building work'];
-            locals.el.optionalItemID = ['date_a','date_b','date_c','date_d','date_e'];
-            locals.el.optionalHelp = "This question does not relate to your equity in the property. It relates to the parties on the Certificate of Title and what percentage is owned by those parties. The eligible person must be one of the parties on the title for the subsidy to be payable on the property/loan."
-            locals.el.optionalID = "occupancy_date";
-            %>
-            <%- include(partials+"components/form-elements/radio", locals) %>
+            <%- include(partials+"components/form-partials/radio", {
+              label: "I declare that:",
+              boxes: [
+                {
+                  text: "I (or I and my dependent/s) will be occupying the property",
+                  toggle: "#date-will-commence"
+                },
+                {
+                  text: "I (or I and my dependent/s) currently occupy the property",
+                  toggle: "#date-commenced"
+                },
+                {
+                  text: "My dependent/s will be occupying the property",
+                  toggle: "#date-will-commence"
+                },
+                {
+                  text: "My dependent/s currently occupy the property",
+                  toggle: "#date-commenced"
+                },
+                {
+                  text: "I will not be occupying the property until the completion of building work",
+                  toggle: "#date-expected"
+                }
+              ]
+            }) %>
 
-            <% 
-            locals.el = {};
-            locals.el.question = 'Date occupancy will commence'; 
-            locals.el.optionalID = "date_will_commence";
-            locals.el.optionalHide = true;
-            %>
-            <%- include(partials+"components/form-elements/date", locals) %>
+            <div id="date-will-commence" hidden>
+              <%- include(partials+"components/form-partials/date", {
+                label: "Date occupancy will commence"
+              }) %>
+            </div>
 
-            <% 
-            locals.el = {};
-            locals.el.question = 'Date occupancy commenced'; 
-            locals.el.optionalID = "date_commenced";
-            locals.el.optionalHide = true;
-            %>
-            <%- include(partials+"components/form-elements/date", locals) %>
+            <div id="date-commenced" hidden>
+              <%- include(partials+"components/form-partials/date", {
+                label: "Date occupancy commenced"
+              }) %>
+            </div>
 
-            <% 
-            locals.el = {};
-            locals.el.question = 'Expected occupancy start date'; 
-            locals.el.optionalID = "date_expected";
-            locals.el.optionalHide = true;
-            %>
-            <%- include(partials+"components/form-elements/date", locals) %>
-
-            <%# 
-            locals.el = {};
-            locals.el.question = 'Occupancy declaration'; 
-            locals.el.items = ['I understand that I (or my dependant/s) must occupy the subsidised property for 12 months from the commencement of subsidy payments.']
-            %>
-            <%#- include(partials+"components/form-elements/checkbox", locals) %>
+            <div id="date-expected" hidden>
+              <%- include(partials+"components/form-partials/date", {
+                label: "Expected occupancy start date"
+              }) %>
+            </div>
 
             <div class="form-group" id="lump-sum-previous-yes-div">
               <h2>Occupancy declaration</h2>
               <div style="border: 1px solid #d8d8d8; padding: 30px;">
-                <div class="uiToolKitCheckBox">
-                  <label class="uikit-control-input">
-                    <input class="uikit-control-input__input" type="checkbox" id="declaration_checked" name="declaration_checked">
-                    <span class="uikit-control-input__text">I understand that I (or my dependant/s) must occupy the subsidised property for 12 months from the commencement of
-                      subsidy payments.</span>
-                  </label>
-                </div>
+                <%- include(partials+"components/form-partials/checkbox", {
+                  modifiers: ["noMargins"],
+                  boxes: [
+                    "I understand that I (or my dependant/s) must occupy the subsidised property for 12 months from the commencement of subsidy payments."
+                  ]
+                }) %>
               </div>
             </div>
 
-            <% 
-            locals.el = {};
-            locals.el.question = 'Do you currently hold a posting order which will prevent you from meeting the 12 month occupancy requirement?';
-            locals.el.optionalID = "posting_order";
-            %>
-            <%- include(partials+"components/form-elements/radio--yes-no", locals) %>
+            <%- include(partials+"components/form-partials/yes_no", {
+              label: "Do you currently hold a posting order which will prevent you from meeting the 12 month occupancy requirement?",
+              yes_toggle: "#posting_order"
+            }) %>
 
-            <% 
-            locals.el = {};
-            locals.el.question = "Provide details of the posting order:"; 
-            locals.el.optionalHide = true;
-            locals.el.optionalLong = true;
-            locals.el.optionalID = "posting_order_explain";
-            %>
-            <%- include(partials+"components/form-elements/field", locals) %>
+            <div id="posting_order" hidden>
+              <%- include(partials+"components/form-partials/textarea", {
+                label: "Provide details of the posting order:"
+              }) %>
+            </div>
 
-            <% 
-            locals.el = {};
-            locals.el.question = 'Will the land or any building on the land be used for the purpose of carrying on a business, trade or profession?';
-            locals.el.optionalID = "using_for_work";
-            %>
-            <%- include(partials+"components/form-elements/radio--yes-no", locals) %>
+            <%- include(partials+"components/form-partials/yes_no", {
+              label: "Will the land or any building on the land be used for the purpose of carrying on a business, trade or profession?",
+              yes_toggle: "#trade_profession"
+            }) %>
 
-            <% 
-            locals.el = {};
-            locals.el.question = "Describe the nature of the business, trade or profession:"; 
-            locals.el.optionalHide = true;
-            locals.el.optionalLong = true;
-            locals.el.optionalID = "using_for_work_explain";
-            %>
-            <%- include(partials+"components/form-elements/field", locals) %>
-
-
+            <div id="trade_profession" hidden>
+              <%- include(partials+"components/form-partials/textarea", {
+                label: "Describe the nature of the business, trade or profession:"
+              }) %>
+            </div>
 
             <div class="pagination margin-above--extra">
               <button class="uikit-btn uikit-btn--tertiary " onclick="window.location.href='/auth/claim/dhoas/sar2' ">Previous</button>

@@ -33,12 +33,12 @@
             <div class="form-group">
               <h2>Declaration</h2>
               <div class="declaration">
-                <div class="uiToolKitCheckBox">
-                  <label class="uikit-control-input">
-                    <input class="uikit-control-input__input" type="checkbox" id="agreement_checked" name="agreement_checked">
-                    <span class="uikit-control-input__text">I agree to the following:</span>
-                  </label>
-                </div>
+                <%- include(partials+"components/form-partials/checkbox", {
+                  modifiers: ["noMargins"],
+                  boxes: [
+                    "I agree to the following:"
+                  ]
+                }) %>
                 <ol class="declaration__list">
 
                   <li>I will advise DVA either on a "D9155 Notification of change in circumstances" form, or via email or phone, within a reasonable time

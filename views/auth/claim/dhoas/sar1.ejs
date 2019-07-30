@@ -31,81 +31,29 @@
         <div class="col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
           <div class="margin-above--extra margin-below--extra">
 
-            <h2 class="margin-above--large">Address of mortgaged and subsidised property</h2>
+            <%- include(partials+"components/form-partials/address", {
+              legend: "Address of mortgaged and subsidised property",
+              modifiers: "noCountry"
+            }) %>
 
-            <div class="postalAddressAustralia">
-              <div class="form-group">
-                <div class="field">
-                  <label class="uikit-text-input__label" for="postalAddressPrefix">
-                    Building name or address prefix
-                    <span class="hint">(optional)
-                    </span>
-                  </label>
-                  <input type="text" id="postalAddressPrefix" name="postalAddressPrefix" class="uikit-text-input" aria-required="false" maxlength="38" value="">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="uikit-text-input__label" for="postalAddressLine1">Address line 1</label>
-                <input class="uikit-text-input" id="postalAddressLine1" name="postalAddressLine1" type="text" value="">
-              </div>
-              <div class="form-group">
-                <label class="uikit-text-input__label" for="postalAddressLine2">Address line 2
-                  <span class="hint">(optional)</span>
-                </label>
-                <input class="uikit-text-input" id="postalAddressLine2" name="postalAddressLine2" type="text" value="">
-              </div>
+            <%- include(partials+"components/form-partials/yes_no", {
+              label: "Is your postal address different to the subsidised property address?",
+              yes_toggle: "#postal-different"
+            }) %>
 
-              <div class="form-group">
-                <label class="uikit-text-input__label" for="postalAddressTown">Suburb or town</label>
-                <input class="uikit-text-input" id="postalAddressTown" name="postalAddressTown" type="text" value="">
-              </div>
-              <div class="form-group">
-                <label class="uikit-text-input__label" for="postalAddressPostcode">Postcode
-                </label>
-                <input class="uikit-text-input input-small yyyy" id="postalAddressPostcode" maxlength="4" name="postalAddressPostcode" type="text">
-              </div>
-
-              <div class="form-group postalAddressInAus">
-                <label class="uikit-text-input__label" for="postalAddressState">State or territory</label>
-                <select class="uikit-text-input input-half" id="postalAddressState" name="postalAddressState">
-                  <option> -- Select state or territory -- </option>
-                  <option> Australian Capital Territory </option>
-                  <option> New South Wales </option>
-                  <option> Northern Territory </option>
-                  <option> Queensland </option>
-                  <option> South Australia </option>
-                  <option> Tasmania </option>
-                  <option> Victoria </option>
-                  <option> Western Australia </optionf>
-                </select>
-              </div>
+            <div id="postal-different" hidden>
+              <%- include(partials+"components/form-partials/textarea", {
+                label: "Please provide a reason:"
+              }) %>
             </div>
-            <div>
 
-              <% 
-              locals.el = {};
-              locals.el.question = 'Is your postal address different to the subsidised property address?'; 
-              locals.el.optionalID = 'postal'; %>
-              <%- include(partials+"components/form-elements/radio--yes-no", locals) %>
-
-              <% 
-              locals.el = {};
-              locals.el.question = "Please provide a reason:"; 
-              locals.el.optionalHide = true;
-              locals.el.optionalLong = true;
-              locals.el.optionalID = "postal-reason";
-              %>
-              <%- include(partials+"components/form-elements/field", locals) %>
-
-              <% 
-              locals.el = {};
-              locals.el.question = 'Would you like us to update your postal address to your subsidised property address from the date of occupancy?'; 
-              locals.el.optionalID = 'update_address'; 
-              locals.el.optionalHint = '<BR/>This will only update your postal address for DHOAS correspondence.'; 
-              %>
-              <%- include(partials+"components/form-elements/radio--yes-no", locals) %>
-
-            </div>
+            <%- include(partials+"components/form-partials/yes_no", {
+              label: "Would you like us to update your postal address to your subsidised property address from the date of occupancy?",
+              hint: "This will only update your postal address for DHOAS correspondence.",
+              modifiers: ["hintNewLine"],
+              yes_rToggle: "#save-next",
+              no_rToggle: "#save-next"
+            }) %>
 
             <div id="save-next" hidden>
               <p>Choose <b>save and next</b> to continue</p>
@@ -121,6 +69,9 @@
 
             <%- include(partials+"content/modals/claims-cancel-modal") %>
           </div>
+        </div>
+      </div>
+    </div>
 
   </main>
 
@@ -128,26 +79,6 @@
 
   <script>
     $(document).ready(() => {
-
-      $('input[name=postal]').change(function () {
-        var postal = $('input[name=postal]:checked').val();
-        if (postal == "yes") {
-          $("#postal-reason").show("fast");
-          $("#save-next").hide();
-        } else {
-          $("#postal-reason").hide();
-          $("#save-next").hide();
-        }
-      });
-
-      $('input[name=update_address]').change(function () {
-        var updateAddress = $('input[name=update_address]:checked').val();
-        if (updateAddress == "yes") {
-          $("#save-next").show("fast");
-        } else {
-          $("#save-next").show("fast");
-        }
-      });
 
       // Progress percentage
       document.getElementById("percentage").style.width = "20%";

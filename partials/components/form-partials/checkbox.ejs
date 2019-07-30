@@ -5,9 +5,11 @@ let boxCounter = 0;
 
 %>
 
-<div class="form-group" >
+<div class="form-group <%- typeof modifiers !== "undefined" && modifiers && (modifiers.includes("noMargins") || modifiers.includes("noUpperMargins")) ? "margin-above--none" : "" %>
+    <%- typeof modifiers !== "undefined" && modifiers && (modifiers.includes("noMargins") || modifiers.includes("noLowerMargins")) ? "margin-below--none" : "" %>">
   <fieldset
     <%- typeof modifiers !== "undefined" && modifiers && modifiers.includes("disabled") ? "disabled" : "" %>
+    <%- typeof modifiers !== "undefined" && modifiers && (modifiers.includes("noMargins") || modifiers.includes("noLowerMargins")) ? "margin-below--none" : "" %>"
     id="<%- id %>"
   >
 
@@ -69,18 +71,18 @@ let boxCounter = 0;
   <% if (boxes.filter(box => box.toggle !== undefined || box.rToggle !== undefined || box.inject !== undefined).length > 0) { %>
     <script type="text/javascript">
       $("#<%- id %>").change("input[type=checkbox]", function() {
-        $("input[type=checkbox]:checked", this).each(function() {
-          $($(this).data("toggle")).show();
-          $($(this).data("r-toggle")).hide();
-          $(this).closest("fieldset").find($(this).data("inject")).remove();
-          $($(this).data("inject")).clone().insertAfter($(this).closest(".uiToolKitCheckBox"));
-          $(this).closest("fieldset").find($($(this).data("inject"))).show();
-        });
-
         $("input[type=checkbox]:not(:checked)", this).each(function() {
           $($(this).data("toggle")).hide();
           $($(this).data("r-toggle")).show();
           $(this).closest("fieldset").find($(this).data("inject")).remove();
+        });
+
+        $("input[type=checkbox]:checked", this).each(function() {
+          $($(this).data("r-toggle")).hide();
+          $(this).closest("fieldset").find($(this).data("inject")).remove();
+          $($(this).data("inject")).clone().insertAfter($(this).closest(".uiToolKitCheckBox"));
+          $(this).closest("fieldset").find($($(this).data("inject"))).show();
+          $($(this).data("toggle")).show();
         });
       })
     </script>
