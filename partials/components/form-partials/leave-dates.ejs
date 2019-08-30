@@ -42,6 +42,7 @@ if (typeof modifiers === "string") modifiers = [modifiers];
 
 <script>
 
+var ongoing = false;
 
 $(document).ready(function() {
   $("#multi-date__template").clone().removeAttr("id").removeAttr("style").appendTo(".multi-date__container");
@@ -103,25 +104,33 @@ $(".multi-date__container").on("change keyup", ".multi-date input", function() {
 
 $(".multi-date__container").on("click", ".multi-date__button--add", function() {
   $("#multi-date__template").clone().removeAttr("id").removeAttr("style").appendTo(".multi-date__container");
-  $(this).removeClass("multi-date__button--add").addClass("multi-date__button--remove");
+  $(this).closest(".multi-date__container").find(".multi-date:nth-last-of-type(2)").find("input").attr("disabled", "true");
   $(this).closest(".multi-date__container").find(".multi-date").last().find(".dd, .mm, .yyyy").val("");
   $(this).closest(".multi-date__container").find(".multi-date").last().find(".dd, .mm, .yyyy").removeAttr("disabled");
   var this_ongoing = $(this).closest(".multi-date").find(".multi-date__checkbox").prop("checked");
-  $(this).closest(".multi-date").addClass("multi-date__input--text");
-  $(this).closest(".multi-date").find(".multi-date__button--add").addClass("multi-date__button--remove").addClass("uikit-btn--tertiary").removeClass(".multi-date__button--add");
+  $(this).closest(".multi-date").addClass("multi-date--static");
+  $(this).closest(".multi-date").find(".multi-date__button--add").addClass("multi-date__button--remove").addClass("uikit-btn--tertiary").removeClass("multi-date__button--add").text("Remove");
+
   if (this_ongoing) {
-    $(this).closest(".multi-date").find(".uiToolKitCheckBox").addClass("multi-date__checkbox--padding");
+    $(this).closest(".multi-date").find(".uiToolKitCheckBox").removeClass("uiToolKitCheckBox").addClass("multi-date__checkbox--ongoing");
+
     ongoing = true;
-    $(".multi-date__container").find(".multi-date__checkbox--padding").find(".multi-date__checkbox").attr("disabled", "true")
-    $(".multi-date__container").find(".multi-date__checkbox--padding").find(".multi-date__checkbox").prop("checked", "true")
-    $(".multi-date__container").find(".multi-date__checkbox--padding").find(".uikit-control-input__text").addClass("multi-date__checkbox-text--disabled-override")
+   
+    $(".multi-date__container").find(".multi-date__checkbox--ongoing").find(".multi-date__checkbox").attr("disabled", "true")
+    $(".multi-date__container").find(".multi-date__checkbox--ongoing").find(".multi-date__checkbox").prop("checked", "true")
+    $(".multi-date__container").find(".multi-date__checkbox--ongoing").find(".uikit-control-input__text").addClass("multi-date__checkbox-text--disabled-override")
+  } else {
+    $(this).closest(".multi-date").find(".uiToolKitCheckBox").remove();
   }
+
   if (ongoing) $(".multi-date__container").find(".uiToolKitCheckBox").remove();
 })
+
 $(".multi-date__container").on("click", ".multi-date__button--remove", function() {
   if ($(this).closest(".multi-date").find(".multi-date__checkbox").prop("checked")) {
     ongoing = false;
-    checkbox.insertBefore($(".multi-date__container").find(".multi-date").last().find(".multi-date--end").find(".multi-date__button"));
+    $(this).closest(".multi-date__container").find(".multi-date").last().find(".multi-date--end .multi-date__input-group").append(checkbox);
+    checkbox.appendTo("");
   }
   $(this).closest(".multi-date").remove();
 });
