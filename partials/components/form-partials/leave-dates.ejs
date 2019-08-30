@@ -93,7 +93,7 @@ $(".multi-date__container").on("click", ".multi-date__checkbox", function() {
 $(".multi-date__container").on("change keyup", ".multi-date input", function() {
   var origElem = $(this);
   function elemVal(elem, pos) {
-    return origElem.closest(".multi-date").find(`.multi-date--${pos}`).find(`.${elem}`).val().length
+    return origElem.closest(".multi-date").find(".multi-date--"+pos).find("."+elem).val().length
   }
   if ((elemVal("dd", "start") === 2 && elemVal("mm", "start") === 2 && elemVal("yyyy", "start") === 4) && (origElem.closest(".multi-date").find(".multi-date__checkbox").prop("checked") || (elemVal("dd", "end") === 2 && elemVal("mm", "end") === 2 && elemVal("yyyy", "end") === 4)) ) {
       origElem.closest(".multi-date").find(".multi-date__button--add").removeAttr("disabled")
