@@ -52,6 +52,7 @@
     padding: 0 0.3rem;
     font-weight: 300;
     color: #979797;
+    display: inline-block;
   }
 }
 
@@ -67,6 +68,7 @@
   padding: 0.8rem 1.25rem;
   background: #fff;
   min-width: 250px;
+  font-size: 16px;
 }
 
 .multi-date__input-group .uiToolKitCheckBox {
@@ -82,11 +84,6 @@
   padding: 0;
   order: 3;
   width: auto;
-}
-
-.multi-date__label--added {
-  width: unset;
-  min-width: 120px;
 }
 
 .multi-date__added {
@@ -123,6 +120,11 @@
     background: none !important;
     font-size: 17px;
   }
+
+  .uikit-text-input, span {
+    height: 2.8125rem;
+    margin: auto 0;
+  }
 }
 
 @media screen and (min-width: $AU-media-sm) {
@@ -158,6 +160,12 @@
     flex-wrap: wrap;
   }
 
+  .multi-date--end {
+    .multi-date__input-group {
+      width: 23.375rem;
+    }
+  }
+
   .multi-date__date-group {
     order: 1;
   }
@@ -167,10 +175,6 @@
     padding: 0;
     order: 2;
     margin: 0.5rem 0;
-  }
-
-  .multi-date__label {
-    width: 100%;
   }
 
   .multi-date__input-group {
