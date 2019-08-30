@@ -127,6 +127,52 @@
   }
 }
 
+@media screen and (max-width: $AU-media-sm) {
+
+  .multi-date--static {
+    .multi-date--end {
+      border-top: none;
+    }
+
+    .multi-date__input-group {
+      border-top: none;
+    }
+
+    .hint {
+      display: none;
+    }
+
+    .multi-date__label {
+      min-width: 150px;
+      width: unset;
+      margin-left: 1rem;
+      padding: 0;
+    }
+
+    &.multi-date {
+      width: 100%;
+    }
+
+    .multi-date__input-group {
+      padding: 0;
+    }
+
+    .multi-date__date-group {
+      min-width: unset;
+      display: inline-block;
+    }
+
+    .multi-date__label, .multi-date__date-group {
+      margin: auto 0;
+    }
+
+    .uikit-text-input {
+      padding: 0;
+    }
+  }
+
+}
+
 @media screen and (min-width: $AU-media-sm) {
   .multi-date {
     display: flex;
