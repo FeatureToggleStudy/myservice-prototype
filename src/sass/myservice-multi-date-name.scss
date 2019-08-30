@@ -130,7 +130,7 @@
 @media screen and (max-width: $AU-media-sm) {
 
   .multi-date--static {
-    .multi-date--end {
+    .multi-date__row {
       border-top: none;
     }
 
@@ -151,15 +151,19 @@
 
     &.multi-date {
       width: 100%;
+      border-top: 3px solid #1057a7;
+
     }
 
     .multi-date__input-group {
       padding: 0;
+      flex: row wrap;
     }
 
     .multi-date__date-group {
       min-width: unset;
       display: inline-block;
+      width: 12.2rem;
     }
 
     .multi-date__label, .multi-date__date-group {
