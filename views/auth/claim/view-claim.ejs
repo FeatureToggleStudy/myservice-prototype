@@ -1,7 +1,38 @@
 <% var claims = JSON.parse(include("claims-data"));%>
-<p>testing the json</p>
 
-<% claims.forEach((claim, index) => { %>
-<p class="main"><%- claim.title %></p>
-<p class="details">Claim ID: <%- claim.id %></p>
-<% }); %>
+<!DOCTYPE html>
+<html class="js" lang="en">
+
+<head>
+  <title>Claims | MyService</title>
+  <%- include(partials+"components/layout/head") %>
+</head>
+
+<body class="uikit-body uikit-grid uikit-refactor">
+  <noscript>
+    <p role="alert">This website needs JavaScript to work properly.</p>
+  </noscript>
+  <nav class="uikit-skip-link">
+    <a class="uikit-skip-link__link" href="#main-content">Skip to main content</a>
+  </nav>
+  <%- include(partials+"components/layout/header-topbar") %>
+  <%- include(partials+"components/layout/header-authenticated") %>
+  <%- include(partials+"components/layout/header-nom-rep") %>
+  <main>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramID = urlParams.get('id');
+    </script>
+    <div id="main-content" class="container">
+      <% claims.forEach((claim, index) => { %>
+      <% if(claim.id === paramID) { %>
+      <p class="main"><%- claim.title %></p>
+      <p class="details">Claim ID: <%- claim.id %></p>
+      <% }; %>
+      <% }); %>
+    </div>
+  </main>
+  <%- include(partials+"components/layout/footer") %>
+</body>
+
+</html>
