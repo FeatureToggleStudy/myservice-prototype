@@ -127,16 +127,12 @@
   }
 }
 
-// .multi-date {
-//   width: 470px;
-// }
-
 .multi-date__button-checkbox {
   display: flex;
   flex-direction: column;
 }
 
-@media screen and (max-width: $AU-media-sm) {
+@media screen and (max-width: calc($AU-media-sm) - 1 + 0.99) {
   .multi-date--static {
     &.multi-date {
       border-top: 3px solid #1057a7;
@@ -199,6 +195,25 @@
 }
 
 @media screen and (min-width: $AU-media-sm) {
+  .multi-date__input-group {
+    position: relative;
+  }
+  
+  .multi-date--has-checkbox {
+    min-height: 11.5rem;
+
+
+    .multi-date__checkbox--ongoing, .uiToolKitCheckBox {
+      position: absolute;
+      left: 19px;
+      bottom: 0;
+    }
+  }
+
+  .multi-date--static.multi-date--has-checkbox {
+    min-height: initial;
+  }
+
   .multi-date {
     display: flex;
     flex-direction: row;
@@ -222,6 +237,15 @@
 
   .multi-date--start {
     max-width: 15.625rem;
+
+    .multi-date__date-group:after {
+      font-weight: 900;
+      content: "–";
+      color: #1057a7;
+      font-size: 1.5rem;
+      position: absolute;
+      right: 0.55rem;
+    }
   }
 
   .multi-date__input-group {

@@ -8,10 +8,10 @@ if (typeof modifiers === "string") modifiers = [modifiers];
 
 
 <div class="multi-date__container">
-
+  
 </div>
 
-<div class="multi-date" id="multi-date__template" style="display: none">
+<div class="multi-date multi-date--has-checkbox" id="multi-date__template" style="display: none">
   <fieldset class="multi-date__row multi-date--start">
     <legend id="<%- id %>-start" class="multi-date__label legend-override">Start Date <span class="hint"> (dd / mm / yyyy)</span></legend>
     <div class="multi-date__input-group">
@@ -137,5 +137,16 @@ $(".multi-date__container").on("click", ".multi-date__button--remove", function(
   }
   $(this).closest(".multi-date").remove();
 });
+
+$(".multi-date__container").on("click", ".multi-date__button", function() {
+  $(".multi-date").each(function() {
+    if ($("input[type=checkbox]", this).length > 0) {
+      $(this).addClass("multi-date--has-checkbox");
+    } else {
+      $(this).removeClass("multi-date--has-checkbox");
+    }
+  })
+});
+
 
 </script>
