@@ -127,15 +127,30 @@
   }
 }
 
-@media screen and (max-width: $AU-media-sm) {
+// .multi-date {
+//   width: 470px;
+// }
 
+.multi-date__button-checkbox {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: $AU-media-sm) {
   .multi-date--static {
+    &.multi-date {
+      border-top: 3px solid #1057a7;
+      padding: 0 1.125rem;
+    }
+
     .multi-date__row {
       border-top: none;
     }
 
+
     .multi-date__input-group {
       border-top: none;
+      width: initial;
     }
 
     .hint {
@@ -143,35 +158,41 @@
     }
 
     .multi-date__label {
-      min-width: 150px;
-      width: unset;
-      margin-left: 1rem;
+      max-width: 105px;
+      min-width: 105px;
+      margin: 1rem 0 0 0rem;
+      display: inline-block;
       padding: 0;
-    }
-
-    &.multi-date {
-      width: 100%;
-      border-top: 3px solid #1057a7;
-
     }
 
     .multi-date__input-group {
       padding: 0;
-      flex: row wrap;
+      display: inline;
     }
 
     .multi-date__date-group {
       min-width: unset;
       display: inline-block;
       width: 12.2rem;
-    }
+      
+      .form-group, fieldset {
+        display: inline-block;
+      }
 
-    .multi-date__label, .multi-date__date-group {
-      margin: auto 0;
+      fieldset {
+        margin: 0.2rem 0 0 0;
+      }
     }
 
     .uikit-text-input {
       padding: 0;
+    }
+
+    .multi-date__button {
+      display: block;
+      margin: 0 0 1rem 0;
+      width: 100%;
+
     }
   }
 
@@ -208,6 +229,7 @@
     background: none;
     flex-direction: row;
     flex-wrap: wrap;
+    flex: column wrap;
   }
 
   .multi-date--end {
@@ -229,6 +251,10 @@
 
   .multi-date__input-group {
     margin: 0;
+  }
+
+  .multi-date__button-checkbox {
+    order: 2;
   }
 
   .multi-date__checkbox--ongoing {
