@@ -37,7 +37,7 @@
                   <p class="details">Claim ID: 33657809</p>
                 </div>
                 <div class="col-md-5 col-xs-5 flex-item-3 claim-actions-status claim-actions">
-                  <button class="uikit-btn small uikit-btn--borderless">Add documents</button>
+                 <a href="/auth/claim/add-documents"> <a href="/auth/claim/add-documents" class="uikit-btn small uikit-btn--borderless">Add documents</a></a>
                   <button class="uikit-btn small uikit-btn--borderless">Withdraw</button>
                   <button class="uikit-btn small uikit-btn--borderless" onclick="window.location.href = '#open-example-modal'">View</button>
                 </div>
@@ -99,6 +99,208 @@
   </div>
   </div>
   </section>
+  <% if (!locals.liveFeature.includes('featureNewHomePage')) { %>
+
+  <section id="claim-options">
+    <div class="container margin-above margin-below--extra" id="claims-tiles">
+      <!-- <div class="row" style="width: 100%; padding: 0;"> -->
+      <h2 class="ss-align--center margin-above"><span class="font-weight-heavy">Make a claim to access treatment and support</span></h2>
+      <div class="flex-container flex-container--wrap hover-container">
+        <!-- <div class="col-md-12 margin-below--none" style="padding: 0;"> -->
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/il/claim1">
+            <h3 class="card__title"><span class="font-weight-heavy">Initial Liability</span></h3>
+            <p class="card__supporting-text text-fullwidth">Your first step towards treatment and support for a service-related injury&nbsp;or&nbsp;condition.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">Get started</button>
+            </div>
+          </a>
+        </div>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/health-card0">
+            <h3 class="card__title"><span class="font-weight-heavy">Mental health treatment</span></h3>
+            <p class="card__supporting-text text-fullwidth">Access free mental health treatment.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">Get started</button>
+            </div>
+          </a>
+        </div>
+
+
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/veterancard/vrp1">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Request the Veteran Covenant</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">Request the Covenant Oath, Lapel Pin and Veteran Card as recognition of your service.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small"><span class="hover-none">Get started</span>
+              </button>
+            </div>
+          </a>
+        </div>
+
+
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/afi/start">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Increase your disability&nbsp;pension (AFI)</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">
+              Apply for a payment increase to your disability pension.
+            </p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/incap/progress">
+            <h3 class="card__title"><span class="font-weight-heavy">Incapacity Payments</span></h3>
+            <p class="card__supporting-text text-fullwidth">Get compensated for your inability or reduced ability to work because of a service injury or condition.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">Get started</button>
+            </div>
+          </a>
+        </div>
+
+
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/studentpreeligibility?flow=veteranFlow">
+            <h3 class="card__title"><span class="font-weight-heavy">Education assistance</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">
+              Get help with the cost of education for your family.
+            </p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+
+
+        <% if (locals.liveFeature.includes('featureDhoas')) { %>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/dhoas/asc1">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Defence Home Ownership Assistance Subsidy Scheme</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">
+              Apply for subsidy certificate to assist with the interest of your home loan.
+            </p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <% } %>
+
+
+        <% if (locals.liveFeature.includes('featureDhoas')) { %>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/dhoas-start">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">DHOAS subsidy certificate</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">
+              Apply for a subsidy on the interest of your home loan.
+            </p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <% } %>
+
+
+
+
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="http://www.dsh.gov.au/insurance">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Defence Service Home Insurance Scheme</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">Apply for home, contents and other insurance policies.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small"><span class="external-link hover-none">Defence Service Homes website</span>
+              </button>
+            </div>
+          </a>
+        </div>
+        <% if (locals.liveFeature.includes('featureServicePension')) { %>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/service_pension/sp-progress-a">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Service Pension</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">Apply for age, invalidity or partner service pension</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">Get started</button>
+            </div>
+          </a>
+        </div>
+        <% } %>
+        <% if (locals.liveFeature.includes('featureQS')) { %>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/qualifying_service/qs-1">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Qualifying service</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">Submit a claim to determine if you have qualifying service.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+        <% } %>
+        <% if (locals.liveFeature.includes('featureCivilianQS')) { %>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/qualifying_service/civilian-qs-1">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Civilian qualifying service</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">Submit a claim to determine if you have qualifying service.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+        <% } %>
+        <% if (locals.liveFeature.includes('featureLsa')) { %>
+        <div class="flex-item flex-item--centred card card--claims card--claims-col-3 hover-element" id="nlhc-access">
+          <a class="card-container" href="/auth/claim/lsa/request">
+            <h3 class="card__title">
+              <span class="font-weight-heavy">Lump sum advance</span>
+            </h3>
+            <p class="card__supporting-text text-fullwidth">Request a lump sum advance payment.</p>
+            <div class="card__button">
+              <button class="uikit-btn uikit-btn--tertiary small">
+                Get started
+              </button>
+            </div>
+          </a>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <% } %>
   </main>
   <!-- Modal code -->
   <div id="open-example-modal" class="modal-window">

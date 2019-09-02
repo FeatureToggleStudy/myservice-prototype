@@ -2,12 +2,12 @@ module.exports = tooltip => {
 
 	let { screenreaderText, content, id, modifiers } = tooltip;
 
-	if (!screenreaderText || !content || !id) return "All fields mandatory";
+	// if (!screenreaderText || !content || !id) return "All fields mandatory";
 
 	let tooltipHtml = `
 	<div class="tooltip">
 		<div id="${id}__label" aria-controls="${id}__message" class="tooltip__control" tabindex="0" role="button" aria-expanded="false">
-      <div class="tooltip__label ${modifiers && modifiers.includes("tooltipIconOnly") ? "tooltip__label--icon-only" : ""}">
+      <div class="tooltip__label ${modifiers && modifiers.includes("tooltipShowText") ? "" : "tooltip__label--icon-only"}">
         <a>${screenreaderText}</a>
       </div>
       <div class="tooltip__tab"></div>

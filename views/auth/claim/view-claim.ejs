@@ -1,0 +1,7 @@
+<% var claims = JSON.parse(include("claims-data"));%>
+<p>testing the json</p>
+
+<% claims.forEach((claim, index) => { %>
+<p class="main"><%- claim.title %></p>
+<p class="details">Claim ID: <%- claim.id %></p>
+<% }); %>
