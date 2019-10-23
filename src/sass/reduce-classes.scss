@@ -13,3 +13,59 @@
     display: inline;
     -webkit-print-color-adjust: exact !important;
 }
+
+.menu__sub-menu {
+  margin: 0 !important;
+  padding: 0 0 0 0 !important;
+  display: none;
+  position: absolute;
+  background: #fffff0;
+  width: 10rem;
+  border: 1px solid $gray-dark;
+  border-top: 0;
+  transition: background 10ms ease-in-out;
+
+  li,
+  & {
+    list-style-type: none;
+  }
+
+  li {
+    display: block;
+    padding: 0.2rem 0;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid $gray-mild;
+
+    &:hover {
+      background-color: darken(white, 20%);
+    }
+  }
+
+  a {
+    &,
+    &:hover,
+    &:focus {
+      text-align: center;
+      background: 0;
+      border: 0;
+      margin: 0;
+      outline: 0;
+      text-decoration: none;
+    }
+  }
+}
+
+#tasks {
+  position: relative;
+
+  &:hover {
+    .menu__sub-menu {
+      display: block;
+    }
+  }
+
+  .menu__sub-menu:hover {
+    display: block;
+  }
+}
